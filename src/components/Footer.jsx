@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -7,20 +5,13 @@ export default function Footer() {
 
   return (
     <footer
-      className="
-        bg-white text-slate-700 border-t border-slate-200
-        dark:bg-slate-950 dark:text-slate-200 dark:border-slate-800
-        mt-20
-      "
+      className="bg-white text-slate-700 border-t border-slate-200 dark:bg-slate-950 dark:text-slate-200 dark:border-slate-800 mt-20"
     >
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-10">
           <div>
             <h3
-              className="
-                text-2xl font-bold bg-clip-text text-transparent 
-                bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600
-              "
+              className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600"
             >
               MD Hossin
             </h3>
@@ -55,12 +46,7 @@ export default function Footer() {
               {["🔗", "💼", "🐦", "📧"].map((icon, i) => (
                 <span
                   key={i}
-                  className="
-                    w-10 h-10 rounded-full border border-slate-300 
-                    dark:border-slate-700 flex items-center justify-center
-                    hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400
-                    transition
-                  "
+                  className="w-10 h-10 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition"
                 >
                   {icon}
                 </span>

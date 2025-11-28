@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -16,24 +14,40 @@ export default function Contact() {
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatus("");
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setStatus("");
 
-    setTimeout(() => {
+  try {
+    const response = await fetch("https://formspree.io/f/mkglvegq", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
       setStatus("success");
-      setLoading(false);
       setFormData({ name: "", email: "", subject: "", message: "" });
+    } else {
+      setStatus("error");
+    }
+  } catch (error) {
+    setStatus("error");
+    console.error("Error sending email:", error);
+  } finally {
+    setLoading(false);
+    setTimeout(() => setStatus(""), 4000);
+  }
+};
 
-      setTimeout(() => setStatus(""), 4000);
-    }, 1500);
-  };
 
   const contactInfo = [
-    { icon: "📧", label: "Email", value: "contact@mdhossin.com", link: "mailto:contact@mdhossin.com" },
-    { icon: "📱", label: "Phone", value: "+1 (123) 456-7890", link: "tel:+11234567890" },
-    { icon: "📍", label: "Location", value: "New York, USA" },
+    { icon: "📧", label: "Email", value: "mdhossin093@gmail.com", link: "mailto:mdhossin093@gmail.com" },
+    { icon: "📱", label: "Phone", value: "+8801636348262", link: "tel:+8801636348262" },
+    { icon: "📍", label: "Location", value: "Chittagong, Bangladesh" },
   ];
 
   return (
@@ -45,11 +59,7 @@ export default function Contact() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="
-            rounded-3xl p-8 relative overflow-hidden shadow-xl
-            bg-white text-slate-800 border border-slate-200
-            dark:bg-slate-900 dark:text-slate-50 dark:border-slate-800
-          "
+          className="rounded-3xl p-8 relative overflow-hidden shadow-xl bg-white text-slate-800 border border-slate-200 dark:bg-slate-900 dark:text-slate-50 dark:border-slate-800"
         >
           <h3 className="text-2xl font-semibold mb-4">
             Let’s talk about your next project
@@ -62,11 +72,7 @@ export default function Contact() {
             {contactInfo.map((info) => (
               <div
                 key={info.label}
-                className="
-                  flex items-center gap-4 p-4 rounded-2xl
-                  bg-slate-100 border border-slate-200
-                  dark:bg-white/5 dark:border-white/10
-                "
+                className="flex items-center gap-4 p-4 rounded-2xl bg-slate-100 border border-slate-200 dark:bg-white/5 dark:border-white/10"
               >
                 <div className="text-2xl">{info.icon}</div>
                 <div>
@@ -95,10 +101,7 @@ export default function Contact() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="
-            bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
-            rounded-3xl shadow-lg p-8
-          "
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-lg p-8"
         >
           <div className="space-y-5">
             {["name", "email", "subject"].map((field) => (
@@ -110,21 +113,10 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   placeholder=" "
-                  className="
-                    peer w-full px-4 pt-5 pb-2.5 rounded-xl
-                    bg-slate-100 border border-slate-300
-                    dark:bg-slate-900 dark:border-slate-700
-                    text-sm focus:ring-2 focus:ring-blue-500 transition
-                  "
+                  className="peer w-full px-4 pt-5 pb-2.5 rounded-xl bg-slate-100 border border-slate-300 dark:bg-slate-900 dark:border-slate-700 text-sm focus:ring-2 focus:ring-blue-500 transition"
                 />
                 <label
-                  className="
-                    absolute left-4 top-3 text-sm text-slate-500
-                    dark:text-slate-400 pointer-events-none transition-all
-                    peer-focus:text-blue-600 dark:peer-focus:text-blue-400
-                    peer-focus:top-2 peer-focus:text-xs
-                    peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm
-                  "
+                  className="absolute left-4 top-3 text-sm text-slate-500 dark:text-slate-400 pointer-events-none transition-all peer-focus:text-blue-600 dark:peer-focus:text-blue-400 peer-focus:top-2 peer-focus:text-xs peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm"
                 >
                   {field.charAt(0).toUpperCase() + field.slice(1)}
                 </label>
@@ -140,21 +132,10 @@ export default function Contact() {
                 rows={5}
                 required
                 placeholder=" "
-                className="
-                  peer w-full px-4 pt-5 pb-2.5 rounded-xl
-                  bg-slate-100 border border-slate-300
-                  dark:bg-slate-900 dark:border-slate-700
-                  text-sm focus:ring-2 focus:ring-blue-500 transition
-                "
+                className="peer w-full px-4 pt-5 pb-2.5 rounded-xl bg-slate-100 border border-slate-300 dark:bg-slate-900 dark:border-slate-700 text-sm focus:ring-2 focus:ring-blue-500 transition"
               />
               <label
-                className="
-                  absolute left-4 top-3 text-sm text-slate-500
-                  dark:text-slate-400 pointer-events-none transition-all
-                  peer-focus:text-blue-600 dark:peer-focus:text-blue-400
-                  peer-focus:top-2 peer-focus:text-xs
-                  peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm
-                "
+                className="absolute left-4 top-3 text-sm text-slate-500 dark:text-slate-400 pointer-events-none transition-all peer-focus:text-blue-600 dark:peer-focus:text-blue-400 peer-focus:top-2 peer-focus:text-xs peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm"
               >
                 Message
               </label>
@@ -163,12 +144,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="
-                w-full py-3 rounded-full text-white text-sm font-semibold
-                bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600
-                hover:from-blue-500 hover:to-purple-500
-                disabled:opacity-50 transition
-              "
+              className="w-full py-3 rounded-full text-white text-sm font-semibold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:opacity-50 transition"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>

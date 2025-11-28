@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 
@@ -9,7 +7,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mounted, setMounted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -55,6 +53,12 @@ export default function Navbar() {
     { name: "Projects", id: "projects" },
     { name: "Contact", id: "contact" },
   ];
+
+  const toggleTheme = () => {
+    const currentTheme = resolvedTheme || theme || 'light';
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+  };
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -128,11 +132,11 @@ export default function Navbar() {
 
             {/* Theme toggle */}
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={toggleTheme}
               className="ml-4 px-3 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 text-blue-700 dark:text-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
               aria-label="Toggle theme"
             >
-              {mounted ? (theme === "dark" ? "☀️ Light" : "🌙 Dark") : "⚙️"}
+              {mounted ? ((resolvedTheme || theme) === "dark" ? "☀️ Light" : "🌙 Dark") : "⚙️"}
             </button>
           </ul>
 
@@ -181,11 +185,11 @@ export default function Navbar() {
           ))}
 
           <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={toggleTheme}
             className="w-full py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 text-blue-700 dark:text-gray-100 hover:shadow-lg transition-all duration-300 text-sm mt-2"
           >
             {mounted
-              ? theme === "dark"
+              ? (resolvedTheme || theme) === "dark"
                 ? "Switch to Light ☀️"
                 : "Switch to Dark 🌙"
               : "Loading..."}

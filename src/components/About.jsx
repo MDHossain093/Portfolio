@@ -1,5 +1,3 @@
-"use client";
-
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -28,7 +26,7 @@ export default function About() {
 
           <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/40 dark:border-slate-800 bg-slate-900">
             <img
-              src="/profile.jpg"
+              src="profile.jpg"
               alt="MD Hossin"
               className="w-full h-[360px] object-cover group-hover:scale-105 transition-transform duration-700"
             />
