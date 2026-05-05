@@ -24,7 +24,7 @@ export default function About() {
         >
           <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-blue-500/20 via-cyan-400/10 to-purple-500/20 blur-3xl opacity-70 group-hover:opacity-100 transition-opacity" />
 
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/40 dark:border-slate-800 bg-slate-900">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-300/40 dark:border-slate-800 bg-slate-900">
             <img
               src="profile.jpg"
               alt="MD Hossin"
@@ -41,7 +41,7 @@ export default function About() {
                 <p className="font-semibold text-sm">MD Hossin</p>
               </div>
               <div className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-[11px]">
-                <span className="text-emerald-300">20+ projects</span> shipped
+                <span className="text-emerald-300">4+ projects</span>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default function About() {
             About Me
           </p>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50">
             Building thoughtful digital products with clean code &amp; sharp UI.
           </h2>
 
@@ -97,10 +97,10 @@ export default function About() {
           <div className="mt-8 grid grid-cols-3 gap-4 text-center">
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-blue-100/70 dark:border-slate-700 shadow-sm">
               <h3 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                20+
+                4+
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-400">
-                Projects Delivered
+                Projects Completed
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white dark:bg-slate-900 border border-blue-100/70 dark:border-slate-700 shadow-sm">

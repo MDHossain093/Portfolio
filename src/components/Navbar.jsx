@@ -108,7 +108,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop menu */}
-          <ul className="hidden md:flex items-center gap-8 text-gray-700 dark:text-gray-200 font-medium">
+          <ul className="hidden md:flex items-center gap-8 text-slate-900 dark:text-slate-100 font-medium">
             {menuItems.map((item) => (
               <li key={item.id}>
                 <button
@@ -118,7 +118,7 @@ export default function Navbar() {
                     ${
                       isActive(item.id)
                         ? "text-blue-600 dark:text-blue-400 font-semibold"
-                        : "hover:text-blue-600 dark:hover:text-blue-400"
+                        : "text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400"
                     }
                   `}
                 >
@@ -131,13 +131,13 @@ export default function Navbar() {
             ))}
 
             {/* Theme toggle */}
-            <button
+            {/* <button
               onClick={toggleTheme}
-              className="ml-4 px-3 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 text-blue-700 dark:text-gray-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
+              className="ml-4 px-3 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
               aria-label="Toggle theme"
             >
               {mounted ? ((resolvedTheme || theme) === "dark" ? "☀️ Light" : "🌙 Dark") : "⚙️"}
-            </button>
+            </button> */}
           </ul>
 
           {/* Mobile hamburger */}
@@ -147,17 +147,17 @@ export default function Navbar() {
           >
             <div className="space-y-1.5 transition-all">
               <span
-                className={`block w-7 h-0.5 bg-gray-800 dark:bg-gray-100 transition-transform ${
+                className={`block w-7 h-0.5 bg-slate-900 dark:bg-slate-100 transition-transform ${
                   open ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block w-7 h-0.5 bg-gray-800 dark:bg-gray-100 transition-opacity ${
+                className={`block w-7 h-0.5 bg-slate-900 dark:bg-slate-100 transition-opacity ${
                   open ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`block w-7 h-0.5 bg-gray-800 dark:bg-gray-100 transition-transform ${
+                className={`block w-7 h-0.5 bg-slate-900 dark:bg-slate-100 transition-transform ${
                   open ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
@@ -168,7 +168,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <ul className="fixed top-[72px] left-0 w-full md:hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl py-4 px-6 space-y-4 border-t dark:border-gray-800 shadow-2xl z-40">
+        <ul className="fixed top-[72px] left-0 w-full md:hidden bg-white/95 dark:bg-slate-950/95 backdrop-blur-xl py-4 px-6 space-y-4 border-t dark:border-slate-800 shadow-2xl z-40">
           {menuItems.map((item) => (
             <li key={item.id}>
               <button
@@ -176,7 +176,7 @@ export default function Navbar() {
                 className={`block text-lg w-full text-left ${
                   isActive(item.id)
                     ? "text-blue-600 dark:text-blue-400 font-semibold"
-                    : "text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                    : "text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400"
                 }`}
               >
                 {item.name}
@@ -186,7 +186,7 @@ export default function Navbar() {
 
           <button
             onClick={toggleTheme}
-            className="w-full py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 text-blue-700 dark:text-gray-100 hover:shadow-lg transition-all duration-300 text-sm mt-2"
+            className="w-full py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg transition-all duration-300 text-sm mt-2"
           >
             {mounted
               ? (resolvedTheme || theme) === "dark"

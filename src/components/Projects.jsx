@@ -3,73 +3,51 @@ import { useState, useMemo } from "react";
 
 export default function Projects() {
   const projects = [
-    {
-      id: 1,
-      title: "E-Commerce Platform",
-      description:
-        "A full-stack e-commerce application with shopping cart, payment integration, and an admin dashboard for product & order management.",
-      technologies: ["Next.js", "Node.js", "MongoDB", "Stripe"],
-      image: "/project1.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project1",
-      category: "Full-Stack",
-    },
-    {
-      id: 2,
-      title: "Task Management App",
-      description:
-        "Real-time collaborative task manager with drag & drop, kanban boards and team collaboration features.",
-      technologies: ["React", "Firebase", "Tailwind CSS", "Redux"],
-      image: "/project2.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project2",
-      category: "Frontend",
-    },
-    {
-      id: 3,
-      title: "Weather Dashboard",
-      description:
-        "A weather app with 7-day forecasts, beautiful charts and location-based weather alerts.",
-      technologies: ["Next.js", "OpenWeather API", "Chart.js"],
-      image: "/project3.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project3",
-      category: "Frontend",
-    },
-    {
-      id: 4,
-      title: "Social Media Analytics",
-      description:
-        "Analytics dashboard for monitoring social media performance with data visualizations and reports.",
-      technologies: ["React", "D3.js", "Node.js", "PostgreSQL"],
-      image: "/project4.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project4",
-      category: "Dashboard",
-    },
-    {
-      id: 5,
-      title: "Portfolio Generator",
-      description:
-        "AI-powered portfolio generator that lets developers deploy a polished portfolio in minutes.",
-      technologies: ["Next.js", "OpenAI API", "Prisma", "MySQL"],
-      image: "/project5.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project5",
-      category: "Full-Stack",
-    },
-    {
-      id: 6,
-      title: "Blog CMS",
-      description:
-        "Content management system with markdown, SEO optimization and analytics integration.",
-      technologies: ["Next.js", "MDX", "Tailwind CSS", "Vercel"],
-      image: "/project6.jpg",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com/username/project6",
-      category: "Tooling",
-    },
-  ];
+  {
+    id: 1,
+    title: "Stellar Tales (NASA Space Apps 2025)",
+    description:
+      "Developed an interactive progressive web app to teach children about space weather concepts using real-time NASA data. Implemented offline-first functionality and dynamic visualizations with charts to simplify complex scientific information and improve accessibility.",
+    technologies: ["React", "PWA", "NASA APIs", "Chart.js"],
+    image: "/stellar-tales.jpg",
+    liveUrl: "https://steller-tales.vercel.app/",
+    githubUrl: "",
+    category: "Frontend"
+  },
+  {
+    id: 2,
+    title: "SkillDev",
+    description:
+      "Built a full-stack platform that centralizes student skills, projects, and coding achievements to enhance peer visibility and collaboration. Designed and implemented RESTful APIs, optimized database schema with MySQL, and ensured efficient handling of user-generated content.",
+    technologies: ["HTML", "CSS", "JavaScript", "Express.js", "MySQL"],
+    image: "/skilldev.jpg",
+    liveUrl: "",
+    githubUrl: "https://github.com/MDHossain093/SkillDev",
+    category: "Full-Stack"
+  },
+  {
+    id: 3,
+    title: "Lost & Found Portal",
+    description:
+      "Created a campus-focused web application that enables users to report, search, and recover lost items through image-based listings. Implemented secure communication between users, responsive UI design, and backend services for efficient real-time data management.",
+    technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    image: "/lost-found.jpg",
+    liveUrl: "",
+    githubUrl: "https://github.com/MDHossain093/Lost_Found_Portal",
+    category: "Full-Stack"
+  },
+  {
+    id: 4,
+    title: "CashNex",
+    description:
+      "Developed a progressive web application for tracking personal expenses and loans, offering a simple and mobile-friendly alternative to traditional finance tools. Focused on clean UI design, offline capabilities, and efficient data handling for everyday financial management.",
+    technologies: ["Next.js", "Tailwind CSS", "PWA"],
+    image: "/cashnex.jpg",
+    liveUrl: "https://cashnex.netlify.app/",
+    githubUrl: "https://github.com/MDHossain093/Loan-manager",
+    category: "Frontend"
+  }
+];
 
   const filters = ["All", "Full-Stack", "Frontend", "Dashboard", "Tooling"];
   const [activeFilter, setActiveFilter] = useState("All");
@@ -96,10 +74,10 @@ export default function Projects() {
           <p className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-blue-600 dark:text-blue-400">
             My Work
           </p>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-slate-900 dark:text-slate-50">
             Selected Projects
           </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-sm md:text-base">
+          <p className="mt-3 text-slate-700 dark:text-slate-300 max-w-2xl mx-auto text-sm md:text-base">
             A mix of front-end, full-stack and dashboard projects that showcase
             my experience with modern web technologies and product thinking.
           </p>
@@ -122,7 +100,7 @@ export default function Projects() {
                 className={`px-4 py-1.5 rounded-full text-xs md:text-sm border transition-all duration-200 ${
                   isActive
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-md"
-                    : "border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-blue-500/70 hover:text-blue-600 dark:hover:text-blue-400"
+                    : "border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 hover:border-blue-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
                 }`}
               >
                 {filter}
@@ -140,7 +118,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: index * 0.07 }}
               viewport={{ once: true }}
-              className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               {/* Image / banner */}
               <div className="relative h-44 overflow-hidden bg-slate-900">
@@ -164,11 +142,11 @@ export default function Projects() {
               </div>
 
               {/* Content */}
-              <div className="p-5 flex flex-col h-full">
+              <div className="p-5 flex flex-col">
                 <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1.5">
                   {project.title}
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300 mb-4 line-clamp-2">
+                <p className="text-xs text-slate-700 dark:text-slate-300 mb-4 line-clamp-2">
                   {project.description}
                 </p>
 
@@ -176,29 +154,40 @@ export default function Projects() {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded-full text-[11px] bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 border border-blue-100/70 dark:border-slate-700"
+                      className="px-2.5 py-1 rounded-full text-[11px] bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-100/70 dark:border-blue-800/40"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-auto flex gap-3">
+                <div className="mt-4 flex flex-col sm:flex-row gap-2 sm:gap-3 w-full">
                   <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center text-xs md:text-sm font-semibold px-3 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white transition-all"
+                    href={project.liveUrl || "#projects"}
+                    target={project.liveUrl ? "_blank" : undefined}
+                    rel={project.liveUrl ? "noopener noreferrer" : undefined}
+                    aria-disabled={!project.liveUrl}
+                    className={`px-10 py-2 rounded-full bg-gradient-to-r from-blue-600 via-blue-600 to-purple-600 hover:from-blue-500 hover:via-blue-500 hover:to-purple-500 text-white font-semibold shadow-lg shadow-blue-900/40 hover:-translate-y-0.5 transition ${
+                      project.liveUrl
+                        ? "hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:-translate-y-1"
+                        : "opacity-60 cursor-not-allowed"
+                    }`}
                   >
-                    Live Demo
+                    Live ↗
                   </a>
+
                   <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 text-center text-xs md:text-sm font-semibold px-3 py-2 rounded-full border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-100 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-300 transition-all"
+                    href={project.githubUrl || "#projects"}
+                    target={project.githubUrl ? "_blank" : undefined}
+                    rel={project.githubUrl ? "noopener noreferrer" : undefined}
+                    aria-disabled={!project.githubUrl}
+                    className={`px-10 py-2 rounded-full bg-gradient-to-r from-blue-600 via-blue-600 to-purple-600 hover:from-blue-500 hover:via-blue-500 hover:to-purple-500 text-white font-semibold shadow-lg shadow-blue-900/40 hover:-translate-y-0.5 transition ${
+                      project.githubUrl
+                        ? "hover:from-blue-500 hover:to-blue-600 hover:shadow-lg hover:-translate-y-1"
+                        : "opacity-60 cursor-not-allowed"
+                    }`}
                   >
-                    GitHub
+                    Code ↗
                   </a>
                 </div>
               </div>
