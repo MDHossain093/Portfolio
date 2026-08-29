@@ -5,6 +5,11 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
+import Journey from "@/components/Journey";
+import Achievements from "@/components/Achievements";
+import Competitions from "@/components/Competitions";
+import Education from "@/components/Education";
+import AIDemos from "@/components/AIDemos";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -27,7 +32,12 @@ export default function MyApp({ Component, pageProps }) {
       <Hero />
       <About />
       <Skills />
+      <AIDemos />
       <Projects />
+      <Journey />
+      <Achievements />
+      <Competitions />
+      <Education />
       <Contact />
       <Footer />
       {/* If you later use page-level components, you can still render Component below */}

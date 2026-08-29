@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { Sun, Moon, ChevronDown } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -7,6 +8,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [mounted, setMounted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [moreOpen, setMoreOpen] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
@@ -29,21 +31,34 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Detect active section
+  // Detect active section based on scroll position
   useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
+    const sections = Array.from(document.querySelectorAll("section[id]"));
+    if (sections.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { threshold: 0.5 }
-    );
+    function updateActiveSection() {
+      // The line that defines which section is "active" — about 1/3 from the top
+      const detectionLine = window.innerHeight * 0.33;
 
-    sections.forEach((sec) => observer.observe(sec));
-    return () => sections.forEach((sec) => observer.unobserve(sec));
+      let currentId = sections[0]?.id || "home";
+      for (const sec of sections) {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= detectionLine) {
+          currentId = sec.id;
+        } else {
+          break;
+        }
+      }
+      setActiveSection(currentId);
+    }
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   const menuItems = [
@@ -51,7 +66,16 @@ export default function Navbar() {
     { name: "About", id: "about" },
     { name: "Skills", id: "skills" },
     { name: "Projects", id: "projects" },
+    { name: "Journey", id: "journey" },
+    { name: "AI Demos", id: "ai-demos" },
     { name: "Contact", id: "contact" },
+  ];
+
+  // Sections reachable via "More" — kept compact in the desktop nav
+  const moreItems = [
+    { name: "Achievements", id: "achievements" },
+    { name: "Competitions", id: "competitions" },
+    { name: "Education", id: "education" },
   ];
 
   const toggleTheme = () => {
@@ -130,14 +154,62 @@ export default function Navbar() {
               </li>
             ))}
 
+            {/* More dropdown */}
+            <li
+              className="relative"
+              onMouseEnter={() => setMoreOpen(true)}
+              onMouseLeave={() => setMoreOpen(false)}
+            >
+              <button
+                onClick={() => setMoreOpen((v) => !v)}
+                className="flex items-center gap-1 pb-1 transition cursor-pointer text-slate-900 dark:text-slate-100 hover:text-blue-600 dark:hover:text-blue-400"
+                aria-expanded={moreOpen}
+              >
+                More
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform ${moreOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {moreOpen && (
+                <ul className="absolute top-full right-0 mt-2 w-44 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl py-2 z-50">
+                  {moreItems.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => {
+                          scrollToSection(item.id);
+                          setMoreOpen(false);
+                        }}
+                        className={`block w-full text-left px-4 py-2 text-sm transition ${
+                          isActive(item.id)
+                            ? "text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-blue-950/30"
+                            : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                        }`}
+                      >
+                        {item.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
             {/* Theme toggle */}
-            {/* <button
+            <button
               onClick={toggleTheme}
-              className="ml-4 px-3 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 text-sm"
+              className="ml-4 p-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
               aria-label="Toggle theme"
             >
-              {mounted ? ((resolvedTheme || theme) === "dark" ? "☀️ Light" : "🌙 Dark") : "⚙️"}
-            </button> */}
+              {mounted ? (
+                (resolvedTheme || theme) === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )
+              ) : (
+                <Moon className="w-4 h-4" />
+              )}
+            </button>
           </ul>
 
           {/* Mobile hamburger */}
@@ -184,15 +256,45 @@ export default function Navbar() {
             </li>
           ))}
 
+          {/* More group on mobile — separate visual section */}
+          <li className="pt-2 mt-2 border-t border-slate-200 dark:border-slate-800">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 mb-2">
+              More
+            </p>
+            {moreItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`block text-base w-full text-left py-1.5 ${
+                  isActive(item.id)
+                    ? "text-blue-600 dark:text-blue-400 font-semibold"
+                    : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+                }`}
+              >
+                {item.name}
+              </button>
+            ))}
+          </li>
+
           <button
             onClick={toggleTheme}
-            className="w-full py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg transition-all duration-300 text-sm mt-2"
+            className="w-full py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-slate-800 dark:to-slate-700 text-blue-700 dark:text-slate-100 hover:shadow-lg transition-all duration-300 text-sm mt-2 flex items-center justify-center gap-2"
           >
-            {mounted
-              ? (resolvedTheme || theme) === "dark"
-                ? "Switch to Light ☀️"
-                : "Switch to Dark 🌙"
-              : "Loading..."}
+            {mounted ? (
+              (resolvedTheme || theme) === "dark" ? (
+                <>
+                  <Sun className="w-4 h-4" />
+                  Switch to Light
+                </>
+              ) : (
+                <>
+                  <Moon className="w-4 h-4" />
+                  Switch to Dark
+                </>
+              )
+            ) : (
+              "Loading..."
+            )}
           </button>
         </ul>
       )}

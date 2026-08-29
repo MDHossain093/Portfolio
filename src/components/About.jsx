@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 
 export default function About() {
   const highlights = [
@@ -38,7 +39,7 @@ export default function About() {
                 <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">
                   Full-Stack Developer
                 </p>
-                <p className="font-semibold text-sm">MD Hossin</p>
+                <p className="font-semibold text-sm">MD Hossin (Fardin)</p>
               </div>
               <div className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-[11px]">
                 <span className="text-emerald-300">4+ projects</span>
@@ -65,7 +66,7 @@ export default function About() {
           <p className="mt-4 text-slate-700 dark:text-slate-300 leading-relaxed text-sm md:text-base">
             I&apos;m{" "}
             <span className="font-semibold text-blue-600 dark:text-blue-400">
-              MD Hossin
+              MD Hossin (Fardin)
             </span>
             , a full-stack developer focused on crafting modern web applications
             that look good and perform even better. I enjoy working across the
@@ -85,8 +86,8 @@ export default function About() {
                 key={item}
                 className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300"
               >
-                <span className="mt-1 h-5 w-5 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center text-[11px] text-white shadow-md">
-                  ✓
+                <span className="mt-1 h-5 w-5 rounded-full bg-gradient-to-tr from-blue-500 to-cyan-400 flex items-center justify-center text-white shadow-md">
+                  <Check className="w-3 h-3" strokeWidth={3} />
                 </span>
                 <p>{item}</p>
               </div>
