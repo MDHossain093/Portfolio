@@ -63,20 +63,6 @@ export default function Footer() {
 
   return (
     <footer className="relative mt-24">
-      {/* Top "wave" divider */}
-      <div className="relative h-12 overflow-hidden">
-        <svg
-          className="absolute bottom-0 left-0 w-full h-12 text-slate-900 dark:text-slate-950"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6.01,68.85-16.87,112.6-25.42V0Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
-
       {/* Footer body */}
       <div className="relative bg-slate-900 dark:bg-slate-950 text-slate-200">
         {/* subtle gradient overlay */}
